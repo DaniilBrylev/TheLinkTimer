@@ -2,6 +2,8 @@ package com.example.TheLinkTamer.model1;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Url {
     @Id
@@ -14,28 +16,31 @@ public class Url {
     @Column(nullable = false, unique = true)
     private String shortUrl;
 
-    // Геттеры и сеттеры
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    private User user;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(nullable = false)
+    private int visitLimit;
 
-    public String getOriginalUrl() {
-        return originalUrl;
-    }
+    @Column(nullable = false)
+    private int visitCount;
 
-    public void setOriginalUrl(String originalUrl) {
-        this.originalUrl = originalUrl;
-    }
+    @Column(nullable = false)
+    private LocalDateTime expiryDate;
 
-    public String getShortUrl() {
-        return shortUrl;
-    }
-
-    public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
-    }
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getOriginalUrl() { return originalUrl; }
+    public void setOriginalUrl(String originalUrl) { this.originalUrl = originalUrl; }
+    public String getShortUrl() { return shortUrl; }
+    public void setShortUrl(String shortUrl) { this.shortUrl = shortUrl; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public int getVisitLimit() { return visitLimit; }
+    public void setVisitLimit(int visitLimit) { this.visitLimit = visitLimit; }
+    public int getVisitCount() { return visitCount; }
+    public void setVisitCount(int visitCount) { this.visitCount = visitCount; }
+    public LocalDateTime getExpiryDate() { return expiryDate; }
+    public void setExpiryDate(LocalDateTime expiryDate) { this.expiryDate = expiryDate; }
 }
